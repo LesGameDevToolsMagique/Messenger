@@ -8,15 +8,19 @@
 int main()
 {
     Client *client = new Client();
-    /*
-    client->getConnectionManager()->connection();
 
-    client->getMessageManager()->sendMessage(((ConnectionManager *)client->getConnectionManager())->getSockFd(), "toto", 4);
+    if (client->getConnectionManager()->connection() != -1) {
+        void *msg = client->getMessageManager()->receiveMessage(((ConnectionManager *)client->getConnectionManager())->getSockFd());
 
-    client->getMessageManager()->receiveMessage(((ConnectionManager *)client->getConnectionManager())->getSockFd());
+        if (msg != nullptr) {
+            std::cout << ((char *)msg) << std::endl;
+        }
 
-    client->getConnectionManager()->disconnection();
-    */
+        // client->getMessageManager()->sendMessage(((ConnectionManager *)client->getConnectionManager())->getSockFd(), "toto", 4);
+
+        client->getConnectionManager()->disconnection();
+    }
+
     delete client;
 
     return 0;

@@ -10,7 +10,11 @@
 #include    <string>
 
 #include    <netdb.h>
+#include    <unistd.h>
+#include    <string.h>
 #include    <sys/types.h>
+#include    <arpa/inet.h>
+#include    <netinet/in.h>
 #include    <sys/socket.h>
 
 class                       ConnectionManager : public IConnection
@@ -19,7 +23,7 @@ protected:
     int                     sock_fd;
     std::string             ip_address;
     unsigned int            port;
-    struct sockaddr_in      cnt_addr;
+    struct sockaddr_in      my_addr;
 
 public:
     ConnectionManager(const std::string &ip_address, const unsigned int port);

@@ -4,6 +4,8 @@
 
 #include    "MessageManager.h"
 
+#include <iostream>
+
 MessageManager::MessageManager()
 {
 }
@@ -20,12 +22,12 @@ int         MessageManager::sendMessage(const int sock_fd,
                                         const void *msg, const unsigned int msg_size,
                                         const int flags, const sockaddr *to)
 {
-    int r_func = ((int)sendto(sock_fd, msg, msg_size, flags,
+    int r_send = ((int)sendto(sock_fd, msg, msg_size, flags,
                               to, ((socklen_t)(to == nullptr ? 0 : sizeof(struct sockaddr)))));
 
-    if (r_func == -1) {
+    if (r_send == -1) {
         return -1;
-    } else if (r_func != msg_size) {
+    } else if (r_send != msg_size) {
         return 0;
     }
 
@@ -37,11 +39,15 @@ void        *MessageManager::receiveMessage(const int sock_fd,
                                             const int flags,
                                             struct sockaddr *to, socklen_t *to_size)
 {
-    void *msg;
+    void *msg = operator new(read_size);
 
-    if (recvfrom(sock_fd, msg, read_size, flags, to, (to == nullptr ? nullptr : to_size)) == -1) {
+    int r_recv = ((int)recvfrom(sock_fd, msg, (read_size - 1), flags, to, (to == nullptr ? nullptr : to_size)));
+
+    if (r_recv == -1) {
         return nullptr;
     }
+
+    ((char *)msg)[r_recv] = 0;
 
     return msg;
 }

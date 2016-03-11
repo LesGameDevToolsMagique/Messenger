@@ -3,6 +3,8 @@
 //
 
 #include    "ConnectionManager.h"
+#include <arpa/inet.h>
+#include <netinet/in.h>
 
 ConnectionManager::ConnectionManager(const std::string &ip_address, const unsigned int port)
 {
@@ -46,10 +48,10 @@ const struct hostent    *ConnectionManager::getHostName() const
 
 int                     ConnectionManager::connection()
 {
-    this->createSocket(AF_INET, SOCK_STREAM, 0);
+    this->createSocket(AF_INET, SOCK_STREAM, getprotobyname("TCP")->p_proto);
     this->addrConfig(AF_INET);
 
-    return connect(this->sock_fd, nullptr, 0);
+    return connect(this->sock_fd, ((struct sockaddr *)&this->my_addr), sizeof(struct sockaddr));
 }
 
 void                    ConnectionManager::disconnection()
@@ -71,7 +73,6 @@ void                    ConnectionManager::createSocket(const int domain, const 
 void                    ConnectionManager::closeSocket()
 {
     if (this->sock_fd != -1 || this->sock_fd != 0) {
-
         if (close(this->sock_fd) != -1) {
             this->sock_fd = 0;
         } else {
@@ -82,9 +83,8 @@ void                    ConnectionManager::closeSocket()
 
 void ConnectionManager::addrConfig(const int domain)
 {
-    this->cnt_addr.sin_family = domain;
-    this->cnt_addr.sin_port = htons(this->getPort());
-    this->cnt_addr.sin_addr = *((struct in_addr *) this->getHostName()->h_addr);
-
-    bzero(&(this->cnt_addr.sin_zero), 8);
+    this->my_addr.sin_family = domain;
+    this->my_addr.sin_port = htons(this->getPort());
+    this->my_addr.sin_addr.s_addr = inet_addr(this->getIpAddress().c_str());
+    bzero(&(this->my_addr.sin_zero), 8);
 }

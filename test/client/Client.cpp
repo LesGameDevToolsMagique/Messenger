@@ -7,7 +7,7 @@
 Client::Client()
 {
     this->msg_manager = new MessageManager();
-    this->cnt_manager = new ConnectionManager("", 0);
+    this->cnt_manager = new ConnectionManager("127.0.0.1", 4242);
 }
 
 Client::~Client()
