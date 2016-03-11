@@ -9,7 +9,7 @@
 
 #include    <string>
 
-class               ConnectionManager : public IConnection
+class                   ConnectionManager : public IConnection
 {
 protected:
     int                 sock_fd;

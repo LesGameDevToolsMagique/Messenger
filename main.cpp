@@ -8,17 +8,15 @@
 int main()
 {
     Client *client = new Client();
-
     /*
-    client->connection();
+    client->getConnectionManager()->connection();
 
-    client->getMessageManager()->sendMessage(1, "toto", 4);
+    client->getMessageManager()->sendMessage(((ConnectionManager *)client->getConnectionManager())->getSockFd(), "toto", 4);
 
-    client->getMessageManager()->receiveMessage(1);
+    client->getMessageManager()->receiveMessage(((ConnectionManager *)client->getConnectionManager())->getSockFd());
 
-    client->disconnection();
-     */
-
+    client->getConnectionManager()->disconnection();
+    */
     delete client;
 
     return 0;

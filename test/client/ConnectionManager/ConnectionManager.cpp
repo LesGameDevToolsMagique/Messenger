@@ -41,6 +41,7 @@ const unsigned int  ConnectionManager::getPort() const
 
 int                 ConnectionManager::connection()
 {
+    // this->createSocket(0, 0, 0);
     return connect(this->sock_fd, nullptr, 0);
 }
 
