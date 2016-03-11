@@ -3,9 +3,14 @@
 //
 
 #include <iostream>
+#include "Interface/IMessenger.h"
+#include "test/client/Client.h"
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+    IMessenger *client = new Client();
+
+    delete client;
+
     return 0;
 }
