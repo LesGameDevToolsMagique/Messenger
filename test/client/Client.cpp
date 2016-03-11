@@ -7,11 +7,13 @@
 Client::Client()
 {
     this->msg_manager = new MessageManager();
+    this->cnt_manager = new ConnectionManager("", 0);
 }
 
 Client::~Client()
 {
     delete this->msg_manager;
+    delete this->cnt_manager;
 }
 
 /*
@@ -23,16 +25,8 @@ IMessenger  *Client::getMessageManager() const
     return this->msg_manager;
 }
 
-/*
- *  Connection / Disconnection functions
- */
-
-int         Client::connection()
+IConnection *Client::getConnectionManager() const
 {
-    return 0;
+    return this->cnt_manager;
 }
 
-int         Client::disconnection()
-{
-    return 0;
-}

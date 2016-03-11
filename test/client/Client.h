@@ -6,20 +6,20 @@
 #define     MESSENGER_CLIENT_H
 
 #include    "MessageManager/MessageManager.h"
+#include    "ConnectionManager/ConnectionManager.h"
 
 class               Client
 {
 protected:
     IMessenger      *msg_manager;
+    IConnection     *cnt_manager;
 
 public:
     Client();
     ~Client();
 
     IMessenger      *getMessageManager() const;
-
-    int             connection();
-    int             disconnection();
+    IConnection     *getConnectionManager() const;
 };
 
 
