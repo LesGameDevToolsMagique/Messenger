@@ -15,12 +15,12 @@ public:
 
     virtual int     sendMessage(const int sock_fd,
                                 const void *msg, const unsigned int msg_size,
-                                const unsigned int flags = 0,
+                                const int flags = 0,
                                 const struct sockaddr *to = nullptr) = 0;
     virtual void    *receiveMessage(const int sock_fd,
                                     const unsigned int read_size = 4096,
-                                    const unsigned int flags = 0,
-                                    struct sockaddr *from = nullptr, socklen_t *from_size = 0) = 0;
+                                    const int flags = 0,
+                                    struct sockaddr *from = nullptr, socklen_t *from_size = nullptr) = 0;
 };
 
 #endif  /*  MESSENGER_IMESSENGER_H  */
