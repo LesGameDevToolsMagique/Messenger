@@ -3,12 +3,11 @@
 //
 
 #include <iostream>
-#include "Interface/IMessenger.h"
 #include "test/client/Client.h"
 
 int main()
 {
-    IMessenger *client = new Client();
+    Client *client = new Client();
 
     delete client;
 
