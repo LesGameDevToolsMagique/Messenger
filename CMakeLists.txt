@@ -3,7 +3,8 @@ project(Messenger)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(INTERFACES Interface/IMessenger.h)
+# Interfaces
+set(INTERFACES interface/IMessenger.h interface/IConnection.h)
 
 # Client
 set(CONNECTION_MANAGER_FILES test/client/ConnectionManager/ConnectionManager.cpp test/client/ConnectionManager/ConnectionManager.h)
