@@ -13,11 +13,10 @@ class EchoServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
 class EchoRequestHandler(SocketServer.StreamRequestHandler):
         def handle(self):
                 print "connection from %s" % self.client_address[0]
-                while True:
-                        line = self.rfile.readline()
-                        if not line: break
-                        print "%s wrote: %s" % (self.client_address[0], line.rstrip())
-                        self.wfile.write(line)
+                self.data = self.request.recv(1024).strip()
+                print "{} wrote:".format(self.client_address[0])
+                print self.data
+                self.request.sendall(self.data)
                 print "%s disconnected" % self.client_address[0]
 
 
