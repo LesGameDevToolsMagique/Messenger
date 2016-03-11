@@ -9,27 +9,35 @@
 
 #include    <string>
 
-class                   ConnectionManager : public IConnection
+#include    <netdb.h>
+#include    <sys/types.h>
+#include    <sys/socket.h>
+
+class                       ConnectionManager : public IConnection
 {
 protected:
-    int                 sock_fd;
-    std::string         ip_address;
-    unsigned int        port;
+    int                     sock_fd;
+    std::string             ip_address;
+    unsigned int            port;
+    struct sockaddr_in      cnt_addr;
 
 public:
     ConnectionManager(const std::string &ip_address, const unsigned int port);
     virtual ~ConnectionManager();
 
-    virtual int         connection();
-    virtual void        disconnection();
+    virtual int             connection();
+    virtual void            disconnection();
 
-    const int           getSockFd() const;
-    const std::string   &getIpAddress() const;
-    const unsigned int  getPort() const;
+    const int               getSockFd() const;
+    const std::string       &getIpAddress() const;
+    const unsigned int      getPort() const;
+    const struct hostent    *getHostName() const;
 
 private:
-    void                createSocket(const int domain, const int type, const int protocol = 0);
-    void                closeSocket();
+    void                    createSocket(const int domain, const int type, const int protocol = 0);
+    void                    closeSocket();
+
+    void                    addrConfig(const int domain);
 };
 
 

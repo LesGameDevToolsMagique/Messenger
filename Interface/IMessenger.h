@@ -5,8 +5,8 @@
 #ifndef     MESSENGER_IMESSENGER_H
 #define     MESSENGER_IMESSENGER_H
 
-#include    <sys/socket.h>
 #include    <sys/types.h>
+#include    <sys/socket.h>
 
 class               IMessenger
 {

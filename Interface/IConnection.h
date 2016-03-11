@@ -5,9 +5,6 @@
 #ifndef     MESSENGER_ICONNECTION_H
 #define     MESSENGER_ICONNECTION_H
 
-#include    "sys/types.h"
-#include    "sys/socket.h"
-
 class               IConnection
 {
 public:

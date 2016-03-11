@@ -6,12 +6,10 @@
 
 MessageManager::MessageManager()
 {
-
 }
 
 MessageManager::~MessageManager()
 {
-
 }
 
 /*
