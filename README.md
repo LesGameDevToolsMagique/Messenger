@@ -27,7 +27,7 @@ To be able to send and receive messages from one or multiple users instantly.
 
 # 4.Architecture
 
-
+![alt architecture](https://raw.githubusercontent.com/LesGameDevToolsMagique/Messenger/master/architecture/GametoolMessenger.png)
 
 
 # 5.Details of Components
