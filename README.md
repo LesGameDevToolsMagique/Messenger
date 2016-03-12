@@ -37,3 +37,5 @@ Client is code with C++ and Server with Python
 
 
 # 6.Milestones
+
+1.0 - Client can receive and send messages. The server send back the message to all clients connected.
